@@ -19,9 +19,9 @@ class App extends Component {
     loading: false,
   };
   addNewTodo = (value) => {
+    console.log(value);
     this.setState((prevState) => {
       return {
-        ...prevState,
         todos: [
           ...prevState.todos,
           {
@@ -33,6 +33,9 @@ class App extends Component {
     });
   };
   render() {
+    const sum = (a, b) => a + b;
+    const add = sum;
+    add(3, 4);
     return (
       <div className='App'>
         <AddTodo addTodo={this.addNewTodo} />
