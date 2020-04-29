@@ -9,11 +9,18 @@ import './App.css';
 
 // JSX - HTML like syntax in JS
 class App extends Component {
+  state = {
+    todos: [
+      { text: 'Item First', id: 1 },
+      { text: 'Item Second', id: 2 },
+      { text: 'Item 3', id: 3 },
+    ],
+  };
   render() {
     return (
       <div className='App'>
         <AddTodo />
-        <TodoList />
+        <TodoList items={this.state.todos} />
       </div>
     );
   }
