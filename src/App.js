@@ -14,12 +14,28 @@ class App extends Component {
       { text: 'Item First', id: 1 },
       { text: 'Item Second', id: 2 },
       { text: 'Item 3', id: 3 },
+      { text: 'Item 4', id: 4 },
     ],
+    loading: false,
+  };
+  addNewTodo = (value) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        todos: [
+          ...prevState.todos,
+          {
+            text: value,
+            id: 5,
+          },
+        ],
+      };
+    });
   };
   render() {
     return (
       <div className='App'>
-        <AddTodo />
+        <AddTodo addTodo={this.addNewTodo} />
         <TodoList items={this.state.todos} />
       </div>
     );
