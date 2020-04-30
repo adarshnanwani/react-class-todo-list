@@ -4,10 +4,6 @@ import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import './App.css';
 
-// function App() {
-//   return <div className='App'>This is working</div>;
-// }
-
 // JSX - HTML like syntax in JS
 class App extends Component {
   state = {
@@ -15,7 +11,6 @@ class App extends Component {
     loading: false,
   };
   addNewTodo = (value) => {
-    console.log(value);
     this.setState((prevState) => {
       return {
         todos: [
@@ -29,6 +24,14 @@ class App extends Component {
     });
   };
 
+  deleteTodo = (id) => {
+    this.setState((prevState) => {
+      return {
+        todos: [...prevState.todos].filter((todoItem) => todoItem.id !== id),
+      };
+    });
+  };
+
   render() {
     const sum = (a, b) => a + b;
     const add = sum;
@@ -36,7 +39,7 @@ class App extends Component {
     return (
       <div className='App'>
         <AddTodo addTodo={this.addNewTodo} />
-        <TodoList items={this.state.todos} />
+        <TodoList items={this.state.todos} deleteTodo={this.deleteTodo} />
       </div>
     );
   }
@@ -44,7 +47,8 @@ class App extends Component {
 
 // {
 //   text: 'adzasd',   --- Todo item data
-//   id: 3    --- Todo item unique id
+//   id: 3,    --- Todo item unique id
+//   completed: false
 // }
 
 // App component (Todo list App)
