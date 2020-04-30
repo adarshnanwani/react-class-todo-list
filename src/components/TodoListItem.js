@@ -5,7 +5,6 @@ class TodoListItem extends Component {
     this.props.delete(this.props.item.id);
   };
   handleToggle = () => {
-    console.log('In toggle');
     this.props.toggle(this.props.item.id);
   };
   render() {

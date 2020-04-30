@@ -34,14 +34,14 @@ class App extends Component {
   };
 
   toggleCompleted = (id) => {
-    console.log('In toggleCompleted');
     this.setState((prevState) => {
       return {
         todos: prevState.todos.map((todoItem) => {
-          if (todoItem.id === id) {
-            todoItem.completed = !todoItem.completed;
+          const item = { ...todoItem };
+          if (item.id === id) {
+            item.completed = !item.completed;
           }
-          return todoItem;
+          return item;
         }),
       };
     });
