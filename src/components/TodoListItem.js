@@ -26,7 +26,12 @@ class TodoListItem extends Component {
     const viewTodo = (
       <div>
         <span style={styles}>{item.text}</span>
-        <button onClick={this.toggleEdit}>Edit</button>
+        {!item.completed && (
+          <button onClick={this.toggleEdit} disabled={item.completed}>
+            Edit
+          </button>
+        )}
+
         <button onClick={this.handleToggle}>
           {item.completed ? 'Open' : 'Complete'}
         </button>
