@@ -4,7 +4,7 @@ import './AddTodo.css';
 class AddTodo extends Component {
   state = {
     newTodo: '',
-    error: false
+    error: false,
   };
   handleChange = (event) => {
     const text = event.target.value;
@@ -36,7 +36,9 @@ class AddTodo extends Component {
             value={this.state.newTodo}
             onChange={this.handleChange}
           />
-          {this.state.error && <span class='error'>Todo cannot be empty</span>}
+          {this.state.error && (
+            <span className='error'>Todo cannot be empty</span>
+          )}
           <input className='button' type='submit' value='Add Todo' />
         </form>
       </div>

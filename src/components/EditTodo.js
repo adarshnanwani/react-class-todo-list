@@ -4,19 +4,27 @@ import './EditTodo.css';
 class EditTodo extends Component {
   state = {
     text: this.props.item.text,
+    error: false,
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.update(this.props.item.id, this.state.text);
-    this.setState({
-      text: '',
-    });
-    this.props.toggleEdit();
+    if (this.state.text !== '') {
+      this.props.update(this.props.item.id, this.state.text);
+      this.setState({
+        text: '',
+      });
+      this.props.toggleEdit();
+    } else {
+      this.setState({
+        error: true,
+      });
+    }
   };
   handleChange = (event) => {
     const text = event.target.value;
     this.setState({
       text: text,
+      error: false,
     });
   };
   render() {
@@ -29,6 +37,9 @@ class EditTodo extends Component {
             value={this.state.text}
             onChange={this.handleChange}
           />
+          {this.state.error && (
+            <span className='error'>Todo cannot be empty.</span>
+          )}
           <input className='button' type='submit' value='Save' />
         </form>
       </div>
