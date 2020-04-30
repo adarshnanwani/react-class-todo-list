@@ -9,15 +9,21 @@ class AddTodo extends Component {
     const text = event.target.value;
     this.setState({
       newTodo: text,
+      error: false,
     });
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.newTodo);
-    this.props.addTodo(this.state.newTodo);
-    this.setState({
-      newTodo: '',
-    });
+    if (this.state.newTodo !== '') {
+      this.props.addTodo(this.state.newTodo);
+      this.setState({
+        newTodo: '',
+      });
+    } else {
+      this.setState({
+        error: true,
+      });
+    }
   };
   render() {
     return (
@@ -29,6 +35,7 @@ class AddTodo extends Component {
             value={this.state.newTodo}
             onChange={this.handleChange}
           />
+          {this.state.error && <span class='error'>Todo cannot be empty</span>}
           <input className='button' type='submit' value='Add Todo' />
         </form>
       </div>

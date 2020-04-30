@@ -94,3 +94,9 @@ h3 {
     text-align: left;
   }
 }
+/* Desktops and above*/
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+}
