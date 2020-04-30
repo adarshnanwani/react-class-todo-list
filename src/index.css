@@ -69,6 +69,18 @@ h3 {
 #root {
   padding: 10px 16px;
 }
-#root h1 {
+#root div h1 {
   text-align: center;
+}
+
+@media (min-width: 560px) {
+  #root div {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #root div h1 {
+    text-align: left;
+  }
 }
