@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { v4 } from 'uuid';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import './App.css';
@@ -10,12 +11,7 @@ import './App.css';
 // JSX - HTML like syntax in JS
 class App extends Component {
   state = {
-    todos: [
-      { text: 'Item First', id: 1 },
-      { text: 'Item Second', id: 2 },
-      { text: 'Item 3', id: 3 },
-      { text: 'Item 4', id: 4 },
-    ],
+    todos: [],
     loading: false,
   };
   addNewTodo = (value) => {
@@ -26,12 +22,13 @@ class App extends Component {
           ...prevState.todos,
           {
             text: value,
-            id: 5,
+            id: v4(),
           },
         ],
       };
     });
   };
+
   render() {
     const sum = (a, b) => a + b;
     const add = sum;
@@ -44,6 +41,11 @@ class App extends Component {
     );
   }
 }
+
+// {
+//   text: 'adzasd',   --- Todo item data
+//   id: 3    --- Todo item unique id
+// }
 
 // App component (Todo list App)
 // -- AddTodo
