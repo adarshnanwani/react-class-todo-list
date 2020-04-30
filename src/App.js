@@ -18,6 +18,7 @@ class App extends Component {
           {
             text: value,
             id: v4(),
+            completed: false,
           },
         ],
       };
@@ -32,6 +33,20 @@ class App extends Component {
     });
   };
 
+  toggleCompleted = (id) => {
+    console.log('In toggleCompleted');
+    this.setState((prevState) => {
+      return {
+        todos: prevState.todos.map((todoItem) => {
+          if (todoItem.id === id) {
+            todoItem.completed = !todoItem.completed;
+          }
+          return todoItem;
+        }),
+      };
+    });
+  };
+
   render() {
     const sum = (a, b) => a + b;
     const add = sum;
@@ -39,7 +54,11 @@ class App extends Component {
     return (
       <div className='App'>
         <AddTodo addTodo={this.addNewTodo} />
-        <TodoList items={this.state.todos} deleteTodo={this.deleteTodo} />
+        <TodoList
+          items={this.state.todos}
+          deleteTodo={this.deleteTodo}
+          toggleTodo={this.toggleCompleted}
+        />
       </div>
     );
   }

@@ -5,9 +5,11 @@ class TodoList extends Component {
   render() {
     const itemsJsx = this.props.items.map((item) => (
       <TodoListItem
-      item={item}
-      key={item.id}
-      delete={this.props.deleteTodo} />
+        item={item}
+        key={item.id}
+        delete={this.props.deleteTodo}
+        toggle={this.props.toggleTodo}
+      />
     ));
     return (
       <div>
