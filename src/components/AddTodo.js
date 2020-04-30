@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './AddTodo.css';
 
 class AddTodo extends Component {
   state = {
@@ -20,7 +21,7 @@ class AddTodo extends Component {
   };
   render() {
     return (
-      <div>
+      <div className='AddTodo'>
         <h3>Add New Todo</h3>
         <form onSubmit={this.handleSubmit}>
           <input
@@ -28,7 +29,7 @@ class AddTodo extends Component {
             value={this.state.newTodo}
             onChange={this.handleChange}
           />
-          <input type='submit' value='Add Todo' />
+          <input className='button' type='submit' value='Add Todo' />
         </form>
       </div>
     );

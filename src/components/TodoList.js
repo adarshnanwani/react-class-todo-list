@@ -14,7 +14,7 @@ class TodoList extends Component {
     ));
     return (
       <div>
-        <h2>Todo List</h2>
+        <h3>Todo List</h3>
         <ul>{itemsJsx}</ul>
       </div>
     );

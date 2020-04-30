@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EditTodo from './EditTodo';
-
+import './TodoListItem.css';
 class TodoListItem extends Component {
   state = {
     edit: false,
@@ -20,22 +20,27 @@ class TodoListItem extends Component {
   render() {
     const { item, update } = this.props;
     const styles = {
-      color: 'red',
       textDecoration: item.completed ? 'line-through' : 'none',
     };
     const viewTodo = (
-      <div>
+      <div className='TodoListItem'>
         <span style={styles}>{item.text}</span>
         {!item.completed && (
-          <button onClick={this.toggleEdit} disabled={item.completed}>
+          <button
+            className='button'
+            onClick={this.toggleEdit}
+            disabled={item.completed}
+          >
             Edit
           </button>
         )}
 
-        <button onClick={this.handleToggle}>
+        <button className='button' onClick={this.handleToggle}>
           {item.completed ? 'Open' : 'Complete'}
         </button>
-        <button onClick={this.handleDelete}>Delete</button>
+        <button className='button' onClick={this.handleDelete}>
+          Delete
+        </button>
       </div>
     );
     return (

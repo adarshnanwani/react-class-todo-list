@@ -1,0 +1,18 @@
+.AddTodo {
+  border: 2px solid var(--primary);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.AddTodo h3 {
+  text-align: center;
+}
+
+.AddTodo form {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddTodo form input {
+  margin-bottom: 10px;
+}

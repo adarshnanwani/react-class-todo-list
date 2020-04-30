@@ -67,6 +67,7 @@ class App extends Component {
     add(3, 4);
     return (
       <div className='App'>
+        <h1>Todo List App</h1>
         <AddTodo addTodo={this.addNewTodo} />
         <TodoList
           items={this.state.todos}
