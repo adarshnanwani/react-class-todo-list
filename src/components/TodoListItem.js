@@ -8,14 +8,19 @@ class TodoListItem extends Component {
     this.props.toggle(this.props.item.id);
   };
   render() {
+    const { item } = this.props;
+    const styles = {
+      color: 'red',
+      textDecoration: item.completed ? 'line-through' : 'none',
+    };
     return (
       <li>
-        <span>
-          {this.props.item.text}
-          <button>Edit</button>
-          <button onClick={this.handleToggle}>Complete</button>
-          <button onClick={this.handleDelete}>Delete</button>
-        </span>
+        <span style={styles}>{item.text}</span>
+        <button>Edit</button>
+        <button onClick={this.handleToggle}>
+          {item.completed ? 'Open' : 'Complete'}
+        </button>
+        <button onClick={this.handleDelete}>Delete</button>
       </li>
     );
   }
