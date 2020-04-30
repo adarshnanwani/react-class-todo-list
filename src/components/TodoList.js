@@ -9,6 +9,7 @@ class TodoList extends Component {
         key={item.id}
         delete={this.props.deleteTodo}
         toggle={this.props.toggleTodo}
+        update={this.props.updateTodo}
       />
     ));
     return (

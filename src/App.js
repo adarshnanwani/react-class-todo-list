@@ -47,6 +47,20 @@ class App extends Component {
     });
   };
 
+  updateTodo = (id, newText) => {
+    this.setState((prevState) => {
+      return {
+        todos: prevState.todos.map((todoItem) => {
+          const item = { ...todoItem };
+          if (item.id === id) {
+            item.text = newText;
+          }
+          return item;
+        }),
+      };
+    });
+  };
+
   render() {
     const sum = (a, b) => a + b;
     const add = sum;
@@ -58,6 +72,7 @@ class App extends Component {
           items={this.state.todos}
           deleteTodo={this.deleteTodo}
           toggleTodo={this.toggleCompleted}
+          updateTodo={this.updateTodo}
         />
       </div>
     );

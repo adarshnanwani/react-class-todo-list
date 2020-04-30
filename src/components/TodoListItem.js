@@ -18,7 +18,7 @@ class TodoListItem extends Component {
     });
   };
   render() {
-    const { item } = this.props;
+    const { item, update } = this.props;
     const styles = {
       color: 'red',
       textDecoration: item.completed ? 'line-through' : 'none',
@@ -35,7 +35,15 @@ class TodoListItem extends Component {
     );
     return (
       <li>
-        {this.state.edit ? <EditTodo toggleEdit={this.toggleEdit} /> : viewTodo}
+        {this.state.edit ? (
+          <EditTodo
+            item={item}
+            toggleEdit={this.toggleEdit}
+            update={this.props.update}
+          />
+        ) : (
+          viewTodo
+        )}
       </li>
     );
   }
