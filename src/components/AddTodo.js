@@ -4,6 +4,7 @@ import './AddTodo.css';
 class AddTodo extends Component {
   state = {
     newTodo: '',
+    error: false
   };
   handleChange = (event) => {
     const text = event.target.value;
