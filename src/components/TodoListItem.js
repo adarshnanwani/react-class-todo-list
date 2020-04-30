@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
+import EditTodo from './EditTodo';
 
 class TodoListItem extends Component {
+  state = {
+    edit: false,
+  };
   handleDelete = () => {
     this.props.delete(this.props.item.id);
   };
   handleToggle = () => {
     this.props.toggle(this.props.item.id);
+  };
+  toggleEdit = () => {
+    const editValue = this.state.edit;
+    this.setState({
+      edit: !editValue,
+    });
   };
   render() {
     const { item } = this.props;
@@ -13,14 +23,19 @@ class TodoListItem extends Component {
       color: 'red',
       textDecoration: item.completed ? 'line-through' : 'none',
     };
-    return (
-      <li>
+    const viewTodo = (
+      <div>
         <span style={styles}>{item.text}</span>
-        <button>Edit</button>
+        <button onClick={this.toggleEdit}>Edit</button>
         <button onClick={this.handleToggle}>
           {item.completed ? 'Open' : 'Complete'}
         </button>
         <button onClick={this.handleDelete}>Delete</button>
+      </div>
+    );
+    return (
+      <li>
+        {this.state.edit ? <EditTodo toggleEdit={this.toggleEdit} /> : viewTodo}
       </li>
     );
   }
