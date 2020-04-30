@@ -1,0 +1,18 @@
+.TodoList .filters {
+  display: flex;
+  margin-bottom: 10px;
+}
+.TodoList .filters > span {
+  margin-right: 15px;
+  display: flex;
+  cursor: pointer;
+}
+
+.TodoList .filters > span label {
+  cursor: pointer;
+}
+
+.TodoList .filters input {
+  margin-right: 5px;
+  cursor: pointer;
+}
