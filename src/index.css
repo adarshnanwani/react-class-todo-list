@@ -69,16 +69,26 @@ h3 {
 #root {
   padding: 10px 16px;
 }
+.App {
+  width: 100%;
+}
+#root div {
+  min-width: 360px;
+}
 #root div h1 {
   text-align: center;
 }
 
 @media (min-width: 560px) {
-  #root div {
-    width: 480px;
+  .App {
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: 100%;
+  }
+  #root div {
+    width: 480px;
   }
   #root div h1 {
     text-align: left;
