@@ -11,19 +11,41 @@ class App extends Component {
     todos: [],
     loading: false,
   };
-  addNewTodo = (value) => {
-    this.setState((prevState) => {
-      return {
-        todos: [
-          ...prevState.todos,
-          {
-            text: value,
-            id: v4(),
-            completed: false,
-          },
-        ],
-      };
-    });
+  addNewTodo = async (value) => {
+    // Call the API end point and send data
+    try {
+      const res = await axios.post(
+        'https://todo-list-ady.herokuapp.com/api/v1/todos',
+        {
+          text: value,
+          completed: false,
+        }
+      );
+      console.log(res);
+      const newTodo = res.data.data;
+      // On successful response, update the state
+      // -- add new todo to the todos in state object
+      this.setState((prevState) => {
+        return {
+          todos: [...prevState.todos, newTodo],
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    // Older code
+    // this.setState((prevState) => {
+    //   return {
+    //     todos: [
+    //       ...prevState.todos,
+    //       {
+    //         text: value,
+    //         id: v4(),
+    //         completed: false,
+    //       },
+    //     ],
+    //   };
+    // });
   };
 
   deleteTodo = (id) => {
@@ -62,21 +84,35 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log('In componentDidMount');
     // Reach out to API
-    axios
-      .get('https://todo-list-ady.herokuapp.com/api/v1/todos')
-      .then((res) => {
-        console.log(res.data);
-        // Update state with the data
-        this.setState({
-          todos: res.data.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    // axios
+    //   .get('https://todo-list-ady.herokuapp.com/api/v1/todos')
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     // Update state with the data
+    //     this.setState({
+    //       todos: res.data.data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    try {
+      // Reach out to API
+      const res = await axios.get(
+        'https://todo-list-ady.herokuapp.com/api/v1/todos'
+      );
+      console.log(res);
+      // Update state with the data
+      this.setState({
+        todos: res.data.data,
       });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
