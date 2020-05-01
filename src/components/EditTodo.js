@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './EditTodo.css';
 
 class EditTodo extends Component {
+  constructor(props) {
+    super(props);
+    console.log('In constructor');
+  }
   state = {
     text: this.props.item.text,
     error: false,
@@ -27,7 +31,15 @@ class EditTodo extends Component {
       error: false,
     });
   };
+  componentDidMount() {
+    console.log('In componentDidMount');
+  }
+  shouldComponentUpdate() {
+    console.log('In shouldComponentUpdate');
+    return true;
+  }
   render() {
+    console.log('In render');
     return (
       <div className='EditTodo'>
         <h3>Edit Todo</h3>
@@ -44,6 +56,9 @@ class EditTodo extends Component {
         </form>
       </div>
     );
+  }
+  componentWillUnmount() {
+    console.log('In componentWillUnmount');
   }
 }
 
