@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 } from 'uuid';
+import axios from 'axios';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import './App.css';
@@ -28,7 +29,7 @@ class App extends Component {
   deleteTodo = (id) => {
     this.setState((prevState) => {
       return {
-        todos: [...prevState.todos].filter((todoItem) => todoItem.id !== id),
+        todos: [...prevState.todos].filter((todoItem) => todoItem._id !== id),
       };
     });
   };
@@ -38,7 +39,7 @@ class App extends Component {
       return {
         todos: prevState.todos.map((todoItem) => {
           const item = { ...todoItem };
-          if (item.id === id) {
+          if (item._id === id) {
             item.completed = !item.completed;
           }
           return item;
@@ -52,7 +53,7 @@ class App extends Component {
       return {
         todos: prevState.todos.map((todoItem) => {
           const item = { ...todoItem };
-          if (item.id === id) {
+          if (item._id === id) {
             item.text = newText;
           }
           return item;
@@ -60,6 +61,23 @@ class App extends Component {
       };
     });
   };
+
+  componentDidMount() {
+    console.log('In componentDidMount');
+    // Reach out to API
+    axios
+      .get('https://todo-list-ady.herokuapp.com/api/v1/todos')
+      .then((res) => {
+        console.log(res.data);
+        // Update state with the data
+        this.setState({
+          todos: res.data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
     const sum = (a, b) => a + b;

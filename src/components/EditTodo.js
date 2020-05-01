@@ -13,7 +13,7 @@ class EditTodo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.text !== '') {
-      this.props.update(this.props.item.id, this.state.text);
+      this.props.update(this.props.item._id, this.state.text);
       this.setState({
         text: '',
       });

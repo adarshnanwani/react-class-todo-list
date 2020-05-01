@@ -36,7 +36,7 @@ class TodoList extends Component {
       .map((item) => (
         <TodoListItem
           item={item}
-          key={item.id}
+          key={item._id}
           delete={this.props.deleteTodo}
           toggle={this.props.toggleTodo}
           update={this.props.updateTodo}
@@ -53,7 +53,7 @@ class TodoList extends Component {
               value='all'
               id='all'
               defaultChecked={true}
-              onClick={() =>  this.updateFilter('all')}
+              onClick={() => this.updateFilter('all')}
             />
             <label htmlFor='all'>All</label>
           </span>

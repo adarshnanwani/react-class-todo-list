@@ -6,10 +6,10 @@ class TodoListItem extends Component {
     edit: false,
   };
   handleDelete = () => {
-    this.props.delete(this.props.item.id);
+    this.props.delete(this.props.item._id);
   };
   handleToggle = () => {
-    this.props.toggle(this.props.item.id);
+    this.props.toggle(this.props.item._id);
   };
   toggleEdit = () => {
     const editValue = this.state.edit;
