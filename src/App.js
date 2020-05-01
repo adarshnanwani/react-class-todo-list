@@ -21,7 +21,7 @@ class App extends Component {
           completed: false,
         }
       );
-      console.log(res);
+      console.log('addNewTodo response', res);
       const newTodo = res.data.data;
       // On successful response, update the state
       // -- add new todo to the todos in state object
@@ -56,32 +56,90 @@ class App extends Component {
     });
   };
 
-  toggleCompleted = (id) => {
-    this.setState((prevState) => {
-      return {
-        todos: prevState.todos.map((todoItem) => {
-          const item = { ...todoItem };
-          if (item._id === id) {
-            item.completed = !item.completed;
-          }
-          return item;
-        }),
-      };
-    });
+  toggleCompleted = async (id) => {
+    try {
+      // Find out current completed value
+      const currentCompleted = this.state.todos.find(
+        (todoItem) => todoItem._id === id
+      ).completed;
+      // Call the API and send update data
+      const res = await axios.put(
+        `https://todo-list-ady.herokuapp.com/api/v1/todos/${id}`,
+        {
+          completed: !currentCompleted,
+        }
+      );
+      console.log('toggleCompleted response', res);
+      const updatedTodoItem = res.data.data;
+
+      // Update the state on successful response
+      this.setState((prevState) => {
+        return {
+          todos: prevState.todos.map((todoItem) => {
+            const item = { ...todoItem };
+            if (item._id === id) {
+              return updatedTodoItem;
+            }
+            return item;
+          }),
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
+    // OLDER Code
+    // this.setState((prevState) => {
+    //   return {
+    //     todos: prevState.todos.map((todoItem) => {
+    //       const item = { ...todoItem };
+    //       if (item._id === id) {
+    //         item.completed = !item.completed;
+    //       }
+    //       return item;
+    //     }),
+    //   };
+    // });
   };
 
-  updateTodo = (id, newText) => {
-    this.setState((prevState) => {
-      return {
-        todos: prevState.todos.map((todoItem) => {
-          const item = { ...todoItem };
-          if (item._id === id) {
-            item.text = newText;
-          }
-          return item;
-        }),
-      };
-    });
+  updateTodo = async (id, newText) => {
+    try {
+      // Call the API and send update data
+      const res = await axios.put(
+        `https://todo-list-ady.herokuapp.com/api/v1/todos/${id}`,
+        {
+          text: newText,
+        }
+      );
+      console.log('updateTodo response', res);
+      const updatedTodoItem = res.data.data;
+      // Update the state on successful response
+      this.setState((prevState) => {
+        return {
+          todos: prevState.todos.map((todoItem) => {
+            const item = { ...todoItem };
+            if (item._id === id) {
+              return updatedTodoItem;
+            }
+            return item;
+          }),
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    // OLDER Code
+    // this.setState((prevState) => {
+    //   return {
+    //     todos: prevState.todos.map((todoItem) => {
+    //       const item = { ...todoItem };
+    //       if (item._id === id) {
+    //         item.text = newText;
+    //       }
+    //       return item;
+    //     }),
+    //   };
+    // });
   };
 
   async componentDidMount() {
@@ -105,7 +163,7 @@ class App extends Component {
       const res = await axios.get(
         'https://todo-list-ady.herokuapp.com/api/v1/todos'
       );
-      console.log(res);
+      console.log('componentDidMount getAllTodos response', res);
       // Update state with the data
       this.setState({
         todos: res.data.data,
