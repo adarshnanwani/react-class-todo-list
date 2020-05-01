@@ -4,7 +4,7 @@ import './TodoListItem.css';
 class TodoListItem extends Component {
   state = {
     edit: false,
-  };
+};
   handleDelete = () => {
     this.props.delete(this.props.item._id);
   };
