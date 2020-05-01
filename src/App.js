@@ -48,12 +48,24 @@ class App extends Component {
     // });
   };
 
-  deleteTodo = (id) => {
-    this.setState((prevState) => {
-      return {
-        todos: [...prevState.todos].filter((todoItem) => todoItem._id !== id),
-      };
-    });
+  deleteTodo = async (id) => {
+    try {
+      // Call the API with _id of todoItem to be deleted
+      const res = await axios.delete(
+        `https://todo-list-ady.herokuapp.com/api/v1/todos/${id}`
+      );
+
+      console.log('deleteTodo res', res);
+
+      // Update the state
+      this.setState((prevState) => {
+        return {
+          todos: [...prevState.todos].filter((todoItem) => todoItem._id !== id),
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   toggleCompleted = async (id) => {
