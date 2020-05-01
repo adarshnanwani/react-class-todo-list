@@ -71,9 +71,8 @@ class App extends Component {
   toggleCompleted = async (id) => {
     try {
       // Find out current completed value
-      const currentCompleted = this.state.todos.find(
-        (todoItem) => todoItem._id === id
-      ).completed;
+      const todo = this.state.todos.find((todoItem) => todoItem._id === id);
+      const currentCompleted = todo.completed;
       // Call the API and send update data
       const res = await axios.put(
         `https://todo-list-ady.herokuapp.com/api/v1/todos/${id}`,
