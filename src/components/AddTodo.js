@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions/todo';
 import './AddTodo.css';
 
 const AddTodo = (props) => {
@@ -13,7 +15,7 @@ const AddTodo = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newTodo !== '') {
-      props.addTodo(newTodo);
+      props.addTodoAction(newTodo);
       setNewTodo('');
     } else {
       setError(true);
@@ -32,4 +34,4 @@ const AddTodo = (props) => {
   );
 };
 
-export default AddTodo;
+export default connect(null, { addTodoAction: addTodo })(AddTodo);
