@@ -20,7 +20,7 @@ function todoReducer(state = initialState, action) {
         (item) => item._id === action.payload._id
       );
       // Use splice to remove that index and add new item
-      copyTodos.splice(index, 1, action.payload);
+      copyTodos.splice(index, 1, { ...action.payload });
       return copyTodos;
     case DELETE_TODO:
       return [...state].filter((item) => item._id !== action.payload);
