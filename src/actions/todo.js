@@ -1,7 +1,11 @@
 import { v4 } from 'uuid';
 import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, UPDATE_TODO } from './index';
 
-//NOTE  - Only this file needs to be modified
+//NOTE  -  files  to be modified
+// i) actions/index.js -- Add new actions types
+// ii) actions/todo.js -- Add new action dispatchers and modify existing
+// iii) reducers/todo.js -- Add new cases for new action types
+// iv) App.js -- Get data on page load (Hint: useEffect and an action dispatcher)
 
 // Create an action dispatcher
 export const addTodo = (value) => (dispatch) => {
