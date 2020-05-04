@@ -1,8 +1,33 @@
-import { v4 } from 'uuid';
 import axios from 'axios';
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, UPDATE_TODO } from './index';
+import {
+  GET_ALL_TODOS,
+  SET_ALL_TODOS,
+  ADD_TODO,
+  TOGGLE_TODO,
+  DELETE_TODO,
+  UPDATE_TODO,
+} from './index';
 
 // Create an action dispatcher
+
+export const getAllTodos = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ALL_TODOS,
+    });
+    const res = await axios.get(
+      'https://todo-list-ady.herokuapp.com/api/v1/todos'
+    );
+    const todos = res.data.data;
+    dispatch({
+      type: SET_ALL_TODOS,
+      payload: todos,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const addTodo = (value) => async (dispatch) => {
   try {
     const res = await axios.post(
