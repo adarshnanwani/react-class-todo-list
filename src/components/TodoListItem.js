@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import EditTodo from './EditTodo';
+import { toggleTodo, deleteTodo } from '../actions/todo';
 import './TodoListItem.css';
+
 class TodoListItem extends Component {
   state = {
     edit: false,
-};
+  };
   handleDelete = () => {
-    this.props.delete(this.props.item._id);
+    this.props.deleteTodo(this.props.item._id);
   };
   handleToggle = () => {
-    this.props.toggle(this.props.item._id);
+    this.props.toggleTodo(this.props.item._id);
   };
   toggleEdit = () => {
     const editValue = this.state.edit;
@@ -59,4 +62,4 @@ class TodoListItem extends Component {
   }
 }
 
-export default TodoListItem;
+export default connect(null, { toggleTodo, deleteTodo })(TodoListItem);

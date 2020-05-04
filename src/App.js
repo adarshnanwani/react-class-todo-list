@@ -71,11 +71,7 @@ class App extends Component {
       <div className='App'>
         <h1>Todo List App</h1>
         <AddTodo />
-        <TodoList
-          deleteTodo={this.deleteTodo}
-          toggleTodo={this.toggleCompleted}
-          updateTodo={this.updateTodo}
-        />
+        <TodoList />
       </div>
     );
   }

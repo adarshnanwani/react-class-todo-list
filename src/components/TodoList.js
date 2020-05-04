@@ -23,15 +23,7 @@ class TodoList extends Component {
           ? true
           : false;
       })
-      .map((item) => (
-        <TodoListItem
-          item={item}
-          key={item._id}
-          delete={this.props.deleteTodo}
-          toggle={this.props.toggleTodo}
-          update={this.props.updateTodo}
-        />
-      ));
+      .map((item) => <TodoListItem item={item} key={item._id} />);
     return (
       <div className='TodoList'>
         <h3>Todo List ({this.props.todos.length})</h3>
