@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import EditTodo from './EditTodo';
+import { connect } from 'react-redux';
+import { toggleTodo, deleteTodo } from '../actions/todo';
 import './TodoListItem.css';
 
 const TodoListItem = (props) => {
@@ -10,10 +12,10 @@ const TodoListItem = (props) => {
   };
 
   const handleDelete = () => {
-    props.delete(props.item._id);
+    props.deleteTodo(props.item._id);
   };
   const handleToggle = () => {
-    props.toggle(props.item._id);
+    props.toggleTodo(props.item._id);
   };
   const toggleEdit = () => {
     const editValue = edit;
@@ -51,4 +53,4 @@ const TodoListItem = (props) => {
   );
 };
 
-export default TodoListItem;
+export default connect(null, { toggleTodo, deleteTodo })(TodoListItem);

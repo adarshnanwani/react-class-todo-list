@@ -18,15 +18,7 @@ const TodoList = (props) => {
         ? true
         : false;
     })
-    .map((item) => (
-      <TodoListItem
-        item={item}
-        key={item._id}
-        delete={props.deleteTodo}
-        toggle={props.toggleTodo}
-        update={props.updateTodo}
-      />
-    ));
+    .map((item) => <TodoListItem item={item} key={item._id} />);
   return (
     <div className='TodoList'>
       <h3>Todo List ({props.items.length})</h3>
