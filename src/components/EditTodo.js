@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateTodo } from '../actions/todo';
 import './EditTodo.css';
 
 const EditTodo = (props) => {
@@ -8,7 +10,7 @@ const EditTodo = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (text !== '') {
-      props.update(props.item._id, text);
+      props.updateTodo(props.item._id, text);
       setText('');
       props.toggleEdit();
     } else {
@@ -33,4 +35,4 @@ const EditTodo = (props) => {
   );
 };
 
-export default EditTodo;
+export default connect(null, { updateTodo })(EditTodo);
