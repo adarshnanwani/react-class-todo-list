@@ -95,7 +95,7 @@ class App extends Component {
     return (
       <div className='App'>
         <h1>Todo List App</h1>
-        <AddTodo addTodo={this.addNewTodo} />
+        <AddTodo />
         <TodoList
           items={this.state.todos}
           deleteTodo={this.deleteTodo}
