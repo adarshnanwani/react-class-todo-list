@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoListItem from './TodoListItem';
+import { connect } from 'react-redux';
 import './TodoList.css';
 
 class TodoList extends Component {
@@ -12,19 +13,8 @@ class TodoList extends Component {
     });
   };
   render() {
-    const itemsJsx = this.props.items
+    const itemsJsx = this.props.todos
       .filter((item) => {
-        // if (this.state.filter === 'all') return true;
-        // if (this.state.filter === 'open') {
-        //   if (!item.completed) {
-        //     return true;
-        //   }
-        // }
-        // if (this.state.filter === 'completed') {
-        //   if (item.completed) {
-        //     return true;
-        //   }
-        // }
         return this.state.filter === 'all'
           ? true
           : this.state.filter === 'open' && !item.completed
@@ -44,7 +34,7 @@ class TodoList extends Component {
       ));
     return (
       <div className='TodoList'>
-        <h3>Todo List ({this.props.items.length})</h3>
+        <h3>Todo List ({this.props.todos.length})</h3>
         <div className='filters'>
           <span>
             <input
@@ -84,4 +74,7 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => ({
+  todos: state.todos,
+});
+export default connect(mapStateToProps)(TodoList);

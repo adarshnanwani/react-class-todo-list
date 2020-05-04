@@ -64,31 +64,6 @@ class App extends Component {
 
   async componentDidMount() {
     console.log('In componentDidMount');
-    // Reach out to API
-    // axios
-    //   .get('https://todo-list-ady.herokuapp.com/api/v1/todos')
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     // Update state with the data
-    //     this.setState({
-    //       todos: res.data.data,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    // try {
-    //   // Reach out to API
-    //   const res = await axios.get('todos');
-    //   console.log('componentDidMount getAllTodos response', res);
-    //   // Update state with the data
-    //   this.setState({
-    //     todos: res.data.data,
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
   }
 
   render() {
@@ -97,7 +72,6 @@ class App extends Component {
         <h1>Todo List App</h1>
         <AddTodo />
         <TodoList
-          items={this.state.todos}
           deleteTodo={this.deleteTodo}
           toggleTodo={this.toggleCompleted}
           updateTodo={this.updateTodo}
@@ -106,21 +80,5 @@ class App extends Component {
     );
   }
 }
-
-// {
-//   text: 'adzasd',   --- Todo item data
-//   id: 3,    --- Todo item unique id
-//   completed: false
-// }
-
-// App component (Todo list App)
-// -- AddTodo
-// -- -- Button
-// -- TodoList
-// -- -- TodoListItem
-// -- -- -- Button
-// -- -- EditTodo
-// -- -- -- Button
-// -- -- Filter
 
 export default App;
