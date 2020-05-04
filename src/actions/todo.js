@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from './index';
+import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, UPDATE_TODO } from './index';
 
 // Create an action dispatcher
 export const addTodo = (value) => (dispatch) => {
@@ -28,5 +28,15 @@ export const deleteTodo = (id) => (dispatch) => {
   dispatch({
     type: DELETE_TODO,
     payload: id,
+  });
+};
+
+export const updateTodo = (id, text) => (dispatch, getState) => {
+  const todos = getState().todos;
+  const todo = todos.find((todo) => todo._id === id);
+  todo.text = text;
+  dispatch({
+    type: UPDATE_TODO,
+    payload: todo,
   });
 };

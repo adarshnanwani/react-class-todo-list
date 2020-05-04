@@ -13,6 +13,7 @@ class TodoList extends Component {
     });
   };
   render() {
+    console.log('render todolist');
     const itemsJsx = this.props.todos
       .filter((item) => {
         return this.state.filter === 'all'

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateTodo } from '../actions/todo';
 import './EditTodo.css';
 
 class EditTodo extends Component {
@@ -13,7 +15,7 @@ class EditTodo extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.text !== '') {
-      this.props.update(this.props.item._id, this.state.text);
+      this.props.updateTodo(this.props.item._id, this.state.text);
       this.setState({
         text: '',
       });
@@ -62,4 +64,4 @@ class EditTodo extends Component {
   }
 }
 
-export default EditTodo;
+export default connect(null, { updateTodo })(EditTodo);
