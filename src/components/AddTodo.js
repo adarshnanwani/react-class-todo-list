@@ -1,49 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './AddTodo.css';
 
-class AddTodo extends Component {
-  state = {
-    newTodo: '',
-    error: false,
-  };
-  handleChange = (event) => {
+const AddTodo = (props) => {
+  const [newTodo, setNewTodo] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleChange = (event) => {
     const text = event.target.value;
-    this.setState({
-      newTodo: text,
-      error: false,
-    });
+    setNewTodo(text);
+    setError(false);
   };
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.newTodo !== '') {
-      this.props.addTodo(this.state.newTodo);
-      this.setState({
-        newTodo: '',
-      });
+    if (newTodo !== '') {
+      props.addTodo(newTodo);
+      setNewTodo('');
     } else {
-      this.setState({
-        error: true,
-      });
+      setError(true);
     }
   };
-  render() {
-    return (
-      <div className='AddTodo'>
-        <h3>Add New Todo</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            value={this.state.newTodo}
-            onChange={this.handleChange}
-          />
-          {this.state.error && (
-            <span className='error'>Todo cannot be empty</span>
-          )}
-          <input className='button' type='submit' value='Add Todo' />
-        </form>
-      </div>
-    );
-  }
-}
+
+  return (
+    <div className='AddTodo'>
+      <h3>Add New Todo</h3>
+      <form onSubmit={handleSubmit}>
+        <input type='text' value={newTodo} onChange={handleChange} />
+        {error && <span className='error'>Todo cannot be empty</span>}
+        <input className='button' type='submit' value='Add Todo' />
+      </form>
+    </div>
+  );
+};
 
 export default AddTodo;
