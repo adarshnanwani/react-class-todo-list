@@ -1,6 +1,8 @@
 import { v4 } from 'uuid';
 import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, UPDATE_TODO } from './index';
 
+//NOTE  - Only this file needs to be modified
+
 // Create an action dispatcher
 export const addTodo = (value) => (dispatch) => {
   const newTodo = {
