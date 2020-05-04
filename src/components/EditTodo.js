@@ -1,65 +1,36 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './EditTodo.css';
 
-class EditTodo extends Component {
-  constructor(props) {
-    super(props);
-    console.log('In constructor');
-  }
-  state = {
-    text: this.props.item.text,
-    error: false,
-  };
-  handleSubmit = (event) => {
+const EditTodo = (props) => {
+  const [text, setText] = useState(props.item.text);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.text !== '') {
-      this.props.update(this.props.item._id, this.state.text);
-      this.setState({
-        text: '',
-      });
-      this.props.toggleEdit();
+    if (text !== '') {
+      props.update(props.item._id, text);
+      setText('');
+      props.toggleEdit();
     } else {
-      this.setState({
-        error: true,
-      });
+      setError(true);
     }
   };
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const text = event.target.value;
-    this.setState({
-      text: text,
-      error: false,
-    });
+    setText(text);
+    setError(false);
   };
-  componentDidMount() {
-    console.log('In componentDidMount');
-  }
-  shouldComponentUpdate() {
-    console.log('In shouldComponentUpdate');
-    return true;
-  }
-  render() {
-    console.log('In render');
-    return (
-      <div className='EditTodo'>
-        <h3>Edit Todo</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            value={this.state.text}
-            onChange={this.handleChange}
-          />
-          {this.state.error && (
-            <span className='error'>Todo cannot be empty.</span>
-          )}
-          <input className='button' type='submit' value='Save' />
-        </form>
-      </div>
-    );
-  }
-  componentWillUnmount() {
-    console.log('In componentWillUnmount');
-  }
-}
+
+  return (
+    <div className='EditTodo'>
+      <h3>Edit Todo</h3>
+      <form onSubmit={handleSubmit}>
+        <input type='text' value={text} onChange={handleChange} />
+        {error && <span className='error'>Todo cannot be empty.</span>}
+        <input className='button' type='submit' value='Save' />
+      </form>
+    </div>
+  );
+};
 
 export default EditTodo;

@@ -211,12 +211,8 @@ class App extends Component {
 
 // App component (Todo list App)
 // -- AddTodo
-// -- -- Button
 // -- TodoList
 // -- -- TodoListItem
-// -- -- -- Button
-// -- -- EditTodo
-// -- -- -- Button
-// -- -- Filter
+// -- -- -- EditTodo
 
 export default App;
