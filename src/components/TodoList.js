@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import TodoListItem from './TodoListItem';
+import { getAllTodos } from '../actions/todo';
 import './TodoList.css';
 
 const TodoList = (props) => {
@@ -19,6 +21,10 @@ const TodoList = (props) => {
         : false;
     })
     .map((item) => <TodoListItem item={item} key={item._id} />);
+
+  useEffect(() => {
+    props.getAllTodos();
+  }, []);
   return (
     <div className='TodoList'>
       <h3>Todo List ({props.items.length})</h3>
@@ -60,4 +66,8 @@ const TodoList = (props) => {
   );
 };
 
-export default TodoList;
+const mapStateToProps = (state) => ({
+  items: state.todos,
+});
+
+export default connect(mapStateToProps, { getAllTodos })(TodoList);

@@ -1,25 +1,16 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
-import { getAllTodos } from './actions/todo';
 import './App.css';
 
-const App = (props) => {
-  useEffect(() => {
-    props.getAllTodos();
-  }, []);
+const App = () => {
   return (
     <div className='App'>
       <h1>Todo List App</h1>
       <AddTodo />
-      <TodoList items={props.todos} />
+      <TodoList />
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  todos: state.todos,
-});
-
-export default connect(mapStateToProps, { getAllTodos })(App);
+export default App;
