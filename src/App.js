@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { v4 } from 'uuid';
-import axios from './todoListAxios';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
 import './App.css';
