@@ -3,12 +3,15 @@ import {
   DELETE_TODO,
   TOGGLE_TODO,
   UPDATE_TODO,
+  SET_ALL_TODOS,
 } from '../actions/index';
 
 const initialState = [];
 
 function todoReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_ALL_TODOS:
+      return [...action.payload];
     case ADD_TODO:
       return [...state, action.payload];
     case TOGGLE_TODO:
