@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoListItem from './TodoListItem';
 import { connect } from 'react-redux';
+import { getAllTodos } from '../actions/todo';
 import './TodoList.css';
 
 class TodoList extends Component {
@@ -12,6 +13,10 @@ class TodoList extends Component {
       filter: val,
     });
   };
+
+  componentDidMount() {
+    this.props.getAllTodos();
+  }
   render() {
     console.log('render todolist');
     const itemsJsx = this.props.todos
@@ -70,4 +75,4 @@ class TodoList extends Component {
 const mapStateToProps = (state) => ({
   todos: state.todos,
 });
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, { getAllTodos })(TodoList);
